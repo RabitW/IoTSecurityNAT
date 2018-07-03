@@ -18,8 +18,8 @@ MONITOR_NETWORK=10.42.0.0/24
 # The address we assign to our router, dhcp, and dns server.
 MONITOR_MAIN=10.42.0.1/24
 # The dir 
-WorkDir=/opt/IoTSecNAT
-ConfDir=/opt/IoTSecNAT/CONF
+WorkDir=/opt/IoTSecurityNAT
+ConfDir=/opt/IoTSecurityNAT/CONF
 
 # Start monitor
 function startMonitor()
@@ -41,7 +41,7 @@ function startMonitor()
 	# configure our DHCP server (conf-file did not support variable)
 	echo -e "\033[42;37;1m start dnsmasq \033[0m"
 	echo "---------------------------------------------------------------------------------------------"
-	dnsmasq --conf-file=/opt/IoTSecNAT/CONF/dnsmasq.conf;
+	dnsmasq --conf-file=/opt/IoTSecurityNAT/CONF/dnsmasq.conf;
 	tail -20 /var/log/dnsmasq.log;
 
 	# enable ip forward
