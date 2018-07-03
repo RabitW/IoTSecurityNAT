@@ -148,13 +148,15 @@ dhcp-option=6,10.42.0.1
 
 ## 源码结构
 ```
-├── ArpList // 存储arp信息
-├── CONF // 配置文件目录
-│   ├── dhcphosts // dhcphosts配置
-│   ├── dnsmasq.conf // dnsmasq配置文件
-│   ├── hostapd.conf // hostapd配置文件（ssid、密码等）
-│   └── optsfile // dnsmasq option配置文件
+├── ArpList  // 存储arp信息
+├── CONF  // 配置文件目录
+│   ├── dhcphosts  // dhcphosts配置
+│   ├── dnsfile // dns本地解析配置
+│   ├── dnsmasq.conf  // dnsmasq配置文件
+│   ├── hostapd.conf // hostapd配置文件（ssid、密码等）
+│   └── optsfile // dnsmasq option配置文件
 ├── DeviceInfo // 标识设备信息（MAC、设备名、用户、备注等）
+├── dns.sh // dns记录查看
 ├── monitor.sh // 环境配置（启动、停止、监控、调试）
 ├── proxy.sh // 代理规则配置（设备、规则修改查看）
 └── README.md
