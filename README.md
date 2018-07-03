@@ -58,25 +58,30 @@ input  0  : Exit
 
 - 配置wifi（ssid、密码等），修改配置文件./CONF/hostapd.conf。(```ssid```)为提供的接入点名称，(```wpa_passphrase```)为密码。
 ```shell
-# create a wireless network with this interface; change it if your wireless card is not wlan0
-interface=wlan0
 # create a wireless network with this interface; change it if your wireless card is not wlan1
 interface=wlan0
-ssid=SeclabMonitor
+# change this if a different bridge interface was chosen
+#bridge=br0
+ssid=Seclabiot
 # Change the passphrase to something you like
-wpa_passphrase=1234567890s
 driver=nl80211
 auth_algs=3
 channel=7
-driver=nl80211
 hw_mode=g
+
+logger_syslog=-1
+logger_syslog_level=2
 logger_stdout=-1
 logger_stdout_level=2
-max_num_sta=5
-rsn_pairwise=CCMP
+
 wpa=2
 wpa_key_mgmt=WPA-PSK
-wpa_pairwise=TKIP CCMP
+wpa_passphrase=Seclabiot
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+max_num_sta=50
+wpa_group_rekey=86400
+wpa_strict_rekey=1
 ```
 
 - 配置dnsmasq配置，修改配置文件./CONF/dnsmasq.conf
@@ -87,17 +92,17 @@ interface=wlan0
 # except this interface
 except-interface=lo
 # listen address
-listen-address=10.43.0.1
+listen-address=10.42.0.1
 # give ip addresses in 10-100, lease is valid for 8 hours
-dhcp-range=10.43.0.100,10.43.0.254,8h 
+dhcp-range=10.42.0.100,10.42.0.254,8h 
 # dhcp hostsfile
-dhcp-hostsfile=/opt/seclab/CONF/dhcphosts
+dhcp-hostsfile=/opt/IoTSecurityNAT/CONF/dhcphosts
 # dhcp optsfile
-dhcp-optsfile=/opt/seclab/CONF/optsfile
+dhcp-optsfile=/opt/IoTSecurityNAT/CONF/optsfile
 # router
-dhcp-option=3,10.43.0.1 
+dhcp-option=3,10.42.0.1 
 # dns server
-dhcp-option=6,10.43.0.1 
+dhcp-option=6,10.42.0.1 
 # upstream DNS server
 server=8.8.8.8
 log-queries=extra
@@ -108,29 +113,29 @@ address=/attacker.com/10.43.0.1
 ```
 
 
-- 配置网络（默认配置使用网段10.43.0.0/24，wifi网关地址10.43.0.1）。如需修改IP地址信息，需同时修改文件monitor.sh和./CONF/dnsmasq.conf相关配置。
+- 配置网络（默认配置使用网段10.42.0.0/24，wifi网关地址10.42.0.1）。如需修改IP地址信息，需同时修改文件monitor.sh和./CONF/dnsmasq.conf相关配置。
 
     修改monitor.sh文件中的相关配置
 ```shell
 # Network address range we use for our monitor network (please change IP address in file dnsmasq.conf and dhsphostfile in dir ./CONF/)
-MONITOR_NETWORK=10.43.0.0/24
+MONITOR_NETWORK=10.42.0.0/24
 # The address we assign to our router, dhcp, and dns server.
-MONITOR_MAIN=10.43.0.1/24
+MONITOR_MAIN=10.42.0.1/24
 ```
 修改./CONF/dnsmasq.conf文件中的相关配置
 ```shell
 # listen address
-listen-address=10.43.0.1
+listen-address=10.42.0.1
 # give ip addresses in 10-100, lease is valid for 8 hours
-dhcp-range=10.43.0.100,10.43.0.254,8h 
+dhcp-range=10.42.0.100,10.42.0.254,8h 
 # dhcp hostsfile
-dhcp-hostsfile=/opt/seclab/CONF/dhcphosts
+dhcp-hostsfile=/opt/IoTSecurityNAT/CONF/dhcphosts
 # dhcp optsfile
-dhcp-optsfile=/opt/seclab/CONF/optsfile
+dhcp-optsfile=/opt/IoTSecurityNAT/CONF/optsfile
 # router
-dhcp-option=3,10.43.0.1 
+dhcp-option=3,10.42.0.1 
 # dns server
-dhcp-option=6,10.43.0.1 
+dhcp-option=6,10.42.0.1 
 ```
 
 
