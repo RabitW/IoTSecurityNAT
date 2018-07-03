@@ -116,7 +116,7 @@ log-queries=extra
 log-dhcp
 log-facility=/var/log/dnsmasq.log
 # include addresses
-address=/attacker.com/10.43.0.1
+address=/attacker.com/10.42.0.1
 ```
 
 
