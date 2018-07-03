@@ -53,6 +53,13 @@ input  3  : Clear proxy rules
 input  4  : Add new device
 input  0  : Exit
 ```
+-   dns（添加设备、添加修改规则等）
+```   
+$ ./dns.sh（dns日志查询、本地dns解析功能）
+input  Device IP  : Dns search
+input      1      : Reload dns file
+input      0      : Exit
+```
 
 ## 配置基础环境（可选），系统初始化完毕即可正常使用。如果需要修改网络参数、wifi、dhcp等配置信息，可以参考以下部分。
 
