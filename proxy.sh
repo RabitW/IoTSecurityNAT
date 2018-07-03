@@ -8,8 +8,8 @@
 # Description: Has two interface: wlan0 and eth0, no bridge.
 #
 
-WorkDir=/opt/IoTSecNAT/
-ConfDir=/opt/IoTSecNAT/CONF/
+WorkDir=/opt/IoTSecurityNAT/
+ConfDir=/opt/IoTSecurityNAT/CONF/
 iInf=eth0
 wInf=wlan0
 
